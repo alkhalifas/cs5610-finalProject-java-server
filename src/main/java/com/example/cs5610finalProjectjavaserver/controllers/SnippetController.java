@@ -1,13 +1,10 @@
 package com.example.cs5610finalProjectjavaserver.controllers;
 
 import com.example.cs5610finalProjectjavaserver.models.Snippet;
-import com.example.cs5610finalProjectjavaserver.services.WidgetService;
+import com.example.cs5610finalProjectjavaserver.services.SnippetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -15,7 +12,7 @@ import java.util.List;
 public class SnippetController {
 
   @Autowired
-  WidgetService service;// = new WidgetService();
+  SnippetService service;
 
   @GetMapping("/api/creators/{creatorId}/snippets")
   public List<Snippet> findSnippetsforCreator(
@@ -29,15 +26,15 @@ public class SnippetController {
   }
   @GetMapping("/api/snippets/{sid}")
   public Snippet findSnippetById(
-          @PathVariable("sid") Integer widgetId) {
-    return service.findSnippetById(widgetId);
+          @PathVariable("sid") Integer snippetId) {
+    return service.findSnippetById(snippetId);
   }
   @PostMapping("/api/creators/{creatorId}/snippets")
   public Snippet createSnippet(
           @PathVariable("creatorId") String tid,
-          @RequestBody Snippet widget) {
-    widget.setCreatorId(tid);
-    return service.createSnippet(widget);
+          @RequestBody Snippet snippet) {
+    snippet.setCreatorId(tid);
+    return service.createSnippet(snippet);
   }
   @DeleteMapping("/api/snippets/{sid}")
   public void deleteSnippet(
@@ -46,9 +43,9 @@ public class SnippetController {
   }
   @PutMapping("/api/snippets/{sid}")
   public Snippet updateSnippet(
-          @PathVariable("sid") Integer widgetId,
-          @RequestBody Snippet newWidget) {
-    return service.updateSnippet(widgetId, newWidget);
+          @PathVariable("sid") Integer snippetId,
+          @RequestBody Snippet newSnippet) {
+    return service.updateSnippet(snippetId, newSnippet);
   }
   // TODO: updateSnippet, deleteSnippet
 }

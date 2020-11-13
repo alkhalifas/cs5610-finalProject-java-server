@@ -22,6 +22,14 @@ public class SnippetService {
     return (List<Snippet>) snippetRepository.findAll();
   }
 
+  public List<Snippet> findPublicSnippets(Boolean publicPost) {
+    return (List<Snippet>) snippetRepository.findPublicSnippets(publicPost);
+  }
+
+//  public List<Snippet> findAllCreators() {
+//    return (List<Snippet>) snippetRepository.findAllCreators();
+//  }
+
   public Snippet findSnippetById(Integer snippetId) {
     return snippetRepository.findById(snippetId).get();
   }

@@ -24,11 +24,25 @@ public class SnippetController {
   public List<Snippet> findAllSnippets() {
     return service.findAllSnippets();
   }
+
+  @GetMapping("/api/snippets/public")
+  public List<Snippet> findPublicSnippets() {
+    return service.findPublicSnippets(Boolean.TRUE);
+  }
+
+
   @GetMapping("/api/snippets/{sid}")
   public Snippet findSnippetById(
           @PathVariable("sid") Integer snippetId) {
     return service.findSnippetById(snippetId);
   }
+
+
+//  @GetMapping("/api/creators")
+//  public List<Snippet> findAllCreators() {
+//    return service.findAllCreators();
+//  }
+
   @PostMapping("/api/creators/{creatorId}/snippets")
   public Snippet createSnippet(
           @PathVariable("creatorId") String tid,
@@ -36,11 +50,13 @@ public class SnippetController {
     snippet.setCreatorId(tid);
     return service.createSnippet(snippet);
   }
+
   @DeleteMapping("/api/snippets/{sid}")
   public void deleteSnippet(
           @PathVariable("sid") Integer sid) {
     service.deleteSnippet(sid);
   }
+
   @PutMapping("/api/snippets/{sid}")
   public Snippet updateSnippet(
           @PathVariable("sid") Integer snippetId,

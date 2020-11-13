@@ -33,6 +33,7 @@ public class SnippetService {
   public void deleteSnippet(Integer snippetId) {
     snippetRepository.deleteById(snippetId);
   }
+
   public Snippet updateSnippet(
           Integer snippetId,
           Snippet newSnippet) {

@@ -1,5 +1,6 @@
 package com.example.cs5610finalProjectjavaserver.services;
 
+import com.example.cs5610finalProjectjavaserver.models.Favorites;
 import com.example.cs5610finalProjectjavaserver.models.Snippet;
 import com.example.cs5610finalProjectjavaserver.models.User;
 import com.example.cs5610finalProjectjavaserver.repositories.UserRepository;
@@ -17,6 +18,10 @@ public class UserService {
 
   public List<User> findAllUsers() {
     return (List<User>) userRepository.findAll();
+  }
+
+  public List<Favorites> findFavoritesForUser(Integer id) {
+    return (List<Favorites>) userRepository.findFavoritesForUser(id);
   }
 
   public User createUser(User user) {

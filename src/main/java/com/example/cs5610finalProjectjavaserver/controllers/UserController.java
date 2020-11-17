@@ -1,8 +1,7 @@
 package com.example.cs5610finalProjectjavaserver.controllers;
 
-import com.example.cs5610finalProjectjavaserver.models.Snippet;
+import com.example.cs5610finalProjectjavaserver.models.Favorites;
 import com.example.cs5610finalProjectjavaserver.models.User;
-import com.example.cs5610finalProjectjavaserver.services.SnippetService;
 import com.example.cs5610finalProjectjavaserver.services.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +28,16 @@ public class UserController {
     return service.findAllUsers();
   }
 
-  @GetMapping("/api/users/{uid}")
+  @GetMapping("/api/users/{id}")
   public User findUserById(
-          @PathVariable("sid") Integer userId) {
+          @PathVariable("id") Integer userId) {
     return service.findUserById(userId);
+  }
+
+  @GetMapping("/api/users/{id}/favorites")
+  public List<Favorites> findFavoritesForUser(
+          @PathVariable("id") Integer id) {
+    return service.findFavoritesForUser(id);
   }
 
   @DeleteMapping("/api/users/{uid}")

@@ -1,6 +1,8 @@
 package com.example.cs5610finalProjectjavaserver.services;
 
+import com.example.cs5610finalProjectjavaserver.models.Favorites;
 import com.example.cs5610finalProjectjavaserver.models.Snippet;
+import com.example.cs5610finalProjectjavaserver.models.Tag;
 import com.example.cs5610finalProjectjavaserver.repositories.SnippetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,14 @@ public class SnippetService {
 
   public List<Snippet> findAllSnippets() {
     return (List<Snippet>) snippetRepository.findAll();
+  }
+
+  public List<Tag> findTagsForSnippetId(Integer id) {
+    return (List<Tag>) snippetRepository.findTagsForSnippetId(id);
+  }
+
+  public List<Snippet> searchMultipleTags(List<String> tagsList) {
+    return (List<Snippet>) snippetRepository.searchMultipleTags(tagsList);
   }
 
   public List<Snippet> findPublicSnippets(Boolean publicPost) {

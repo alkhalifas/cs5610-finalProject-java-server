@@ -1,10 +1,13 @@
 package com.example.cs5610finalProjectjavaserver.controllers;
 
+import com.example.cs5610finalProjectjavaserver.models.Favorites;
 import com.example.cs5610finalProjectjavaserver.models.Snippet;
+import com.example.cs5610finalProjectjavaserver.models.Tag;
 import com.example.cs5610finalProjectjavaserver.services.SnippetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -35,6 +38,20 @@ public class SnippetController {
   public Snippet findSnippetById(
           @PathVariable("sid") Integer snippetId) {
     return service.findSnippetById(snippetId);
+  }
+
+  @GetMapping("/api/snippets/{id}/tags")
+  public List<Tag> findTagsForSnippetId(
+          @PathVariable("id") Integer id) {
+    return service.findTagsForSnippetId(id);
+  }
+
+  @GetMapping("/api/snippets/listOfTags")
+  public List<Snippet> searchMultipleTags(
+          @PathVariable("listOfTags") String listOfTags) {
+    List<String> tagsList = Arrays.asList(listOfTags.split("\\s*,\\s*"));
+    return service.searchMultipleTags(tagsList);
+
   }
 
 

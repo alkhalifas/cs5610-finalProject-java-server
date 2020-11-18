@@ -17,8 +17,7 @@ public class User {
   private String paToken;
   private String favorites;
   private String userType;
-
-
+  
   public User(Integer id, String githubId, String firstName, String lastName, String username, String password, String email, String paToken, String favorites, String userType) {
     this.id = id;
     this.githubId = githubId;
